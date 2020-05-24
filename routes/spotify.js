@@ -6,7 +6,7 @@ const tiny = require('tiny-json-http');
 const pe = require('pretty-error').start();
 const Spotify = require('../spotify/spotify');
 
-const spotify = new Spotify();
+const spotify = new Spotify(false);
 let lastRedirectUri = '';
 
 /**

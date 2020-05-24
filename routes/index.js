@@ -2,19 +2,21 @@ const express = require('express');
 
 const Spotify = require('../spotify/spotify');
 const print = require('../util/print');
+const packagejson = require('../package.json');
 
 const router = express.Router();
-
-console.log(`Server URL: ${process.env.SERVER_URL}\n`);
+const { SERVER_URL } = process.env;
 
 /* GET home page. */
 router.get('/', (req, res) => {
   res.render('index', {
     title: 'gm-companion',
-    url: process.env.SERVER_URL,
+    version: packagejson.version,
+    url: SERVER_URL,
     spotify: new Spotify(false),
     discord: {
-      token: print.secret(process.env.DISCORD_BOT_TOKEN)
+      token: print.secret(process.env.DISCORD_BOT_TOKEN),
+      clientId: process.env.DISCORD_BOT_CLIENT_ID
     }
   });
 });

@@ -2,39 +2,21 @@ extends layout
 
 block content
   h1= title
+  p(style="color: green;") Server is running!
 
   div
-    p(style="color: green;") Server is running!
-
-    if (url)
-      p <b>url</b>: <code>#{url}</code>
-    else
-      p(style="color: red;") <b>url</b>: NOT SET
+    h2 info
+    +field("version", version)
+    +status("url", url)
 
   div
     h2 spotify
-
-    if (spotify.clientId)
-      p <b>client id</b>: <code>#{spotify.clientId}</code>
-    else
-      p(style="color: red;") <b>client id</b>: NOT SET
-
-    if (spotify.clientSecret)
-      p <b>client secret</b>: <code>#{spotify.secret()}</code>
-    else
-      p(style="color: red;") <b>client id</b>: NOT SET
-
-    if (url)
-      p <b>redirect uri</b>: <code>#{spotify.redirectUri}</code>
-    else
-      p(style="color: red;") <b>redirect uri</b>: <code>#{spotify.redirectUri}</code>
-    
-    p <b>scope</b>: <code>#{spotify.scope}</code>
+    +status("client id", spotify.clientId)
+    +status("client secret", spotify.secret())
+    +warn("redirect uri", spotify.redirectUri, url)
+    +field("scope", spotify.scope)
 
   div
     h2 discord bot
-
-    if (discord.token)
-      p <b>bot token</b>: <code>#{discord.token}</code>
-    else
-      p(style="color: red;") <b>bot token</b>: NOT SET
+    +status("client id", discord.clientId)
+    +status("bot token", discord.token)

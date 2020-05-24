@@ -1,15 +1,17 @@
 const discord = require('discord.js');
 const rpgDiceRoller = require('rpg-dice-roller/lib/umd/bundle.min.js');
 const pe = require('pretty-error').start();
+const chalk = require('chalk');
 const embeds = require('./embeds');
 const AudioPlayer = require('./audioplayer');
 const print = require('../util/print');
 
 const diceRoller = new rpgDiceRoller.DiceRoller();
 
+const CLIENT_ID = process.env.DISCORD_BOT_CLIENT_ID;
 const BOT_TOKEN = process.env.DISCORD_BOT_TOKEN;
 const AUTO_JOIN = process.env.DISCORD_AUTO_JOIN;
-const PREFIX = '!gm ';
+const PREFIX = process.env.DISCORD_BOT_PREFIX || '!gm ';
 
 const HELP = embeds.help();
 const HELP_ROLL = embeds.helpRoll();
@@ -20,11 +22,13 @@ class DiscordBot {
     this.client = new discord.Client();
 
     this.client.on('ready', async () => {
-      console.log('Connected to discord.\n');
+      this._log(chalk.greenBright('Connected.'));
+
+      this._log(`This bot is currently used in ${this.client.guilds.cache.keyArray().length} guild(s).\n`);
 
       // Auto join channel
       if (AUTO_JOIN) {
-        console.log(`Auto joining channel ${AUTO_JOIN} ...`);
+        this._log(`Auto joining channel ${AUTO_JOIN} ...`);
         this.client.channels.fetch(AUTO_JOIN)
           .then((channel) => {
             this.joinChannel(channel);
@@ -47,12 +51,18 @@ class DiscordBot {
    */
   connect() {
     if (BOT_TOKEN) {
-      console.log(`Discord Bot Token: ${this.token()}\n`);
-      console.log('Connecting to discord ...');
+      if (CLIENT_ID) {
+        this._log(`Client ID: ${chalk.greenBright(CLIENT_ID)}`);
+      } else {
+        this._log(chalk.yellowBright('Warning: Client id is not set!'));
+      }
+
+      this._log(`Bot Token: ${chalk.greenBright(this.token())}`);
+      this._log('Connecting ...');
 
       this.client.login(BOT_TOKEN);
     } else {
-      console.log('No discord bot token set.');
+      this._log(chalk.yellowBright('Warning: No discord bot token set.'));
     }
   }
 
@@ -108,6 +118,10 @@ class DiscordBot {
     console.error(pe.render(error));
   }
 
+  _log(message) {
+    console.log(`${chalk.blue('Discord:')} ${message}`);
+  }
+
   /**
   * Join the voice channel
   */
@@ -117,7 +131,7 @@ class DiscordBot {
         .then((connection) => {
           if (this.audioPlayers.has(channel.id)) return;
 
-          console.log(`Joining channel with ID ${channel.id}`);
+          this._log(`Joining channel with ID ${channel.id}`);
 
           if (message) {
             message.reply(`Joining channel with ID \`${channel.id}\``)
@@ -129,7 +143,7 @@ class DiscordBot {
           // Create new audio player for connection
           this.audioPlayers.set(channel.id, new AudioPlayer(connection));
 
-          console.log(`Connected to channel ${channel.id}.\n`);
+          this._log(`Connected to channel ${channel.id}.\n`);
         })
         .catch((error) => {
           this._handleError(message, error);
@@ -146,7 +160,7 @@ class DiscordBot {
     const { channel } = message.member.voice;
 
     if (channel) {
-      console.log(`Leaving channel ${channel.id} ...`);
+      this._log(`Leaving channel ${channel.id} ...`);
       channel.leave();
       this.audioPlayers.delete(channel.id);
     }
@@ -187,8 +201,8 @@ class DiscordBot {
     const args = message.content.slice(PREFIX.length).split(' ');
     const command = args.shift().toLowerCase();
 
-    console.log(`Command: ${command}`);
-    if (args && args.length) console.log(`Arguments: ${args}`);
+    this._log(`Command: ${command}`);
+    if (args && args.length) this._log(`Arguments: ${args}`);
 
     if (command === 'help') {
       message.reply(HELP)

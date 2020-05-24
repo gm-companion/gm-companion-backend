@@ -4,9 +4,24 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const pe = require('pretty-error').start();
+const chalk = require('chalk');
+const packagejson = require('./package.json');
 
 require('dotenv').config();
 
+// Print some information
+const { SERVER_URL } = process.env;
+const SERVER_VERSION = packagejson.version;
+
+console.log(`Version: ${SERVER_VERSION}\n`);
+
+if (SERVER_URL) {
+  console.log(chalk.greenBright.bold(`Listening on ${SERVER_URL}\n`));
+} else {
+  console.log(chalk.yellow('Warning: Server URL not set in environment variables!'));
+}
+
+// Load routes
 const indexRouter = require('./routes/index');
 const spotifyRouter = require('./routes/spotify');
 const discordRouter = require('./routes/discord');

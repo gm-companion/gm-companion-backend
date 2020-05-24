@@ -1,5 +1,6 @@
 const SpotifyWebApi = require('spotify-web-api-node');
 const pe = require('pretty-error').start();
+const chalk = require('chalk');
 const print = require('../util/print');
 
 class Spotify {
@@ -10,18 +11,18 @@ class Spotify {
     this.scope = 'user-library-read playlist-read-private streaming user-modify-playback-state user-read-currently-playing user-read-playback-state';
 
     if (this.clientId) {
-      console.log(`Spotify Client ID: ${this.clientId}`);
+      this._log(`Client ID: ${chalk.greenBright(this.clientId)}`);
     } else {
-      console.log('No spotify client id set.');
+      this._log(chalk.yellow('No client id set.'));
     }
 
     if (this.clientSecret) {
-      console.log(`Spotify Client Secret: ${print.secret(this.clientSecret)}`);
+      this._log(`Client Secret: ${chalk.greenBright(print.secret(this.clientSecret))}`);
     } else {
-      console.log('No spotify client secret set.');
+      this._log(chalk.yellow('No client secret set.'));
     }
 
-    console.log(`Spotify Redirect URI: ${this.redirectUri}\n`);
+    this._log(`Redirect URI: ${this.redirectUri}\n`);
 
     if (authenticate && this.clientSecret && this.clientId && this.redirectUri) {
       this.api = new SpotifyWebApi({
@@ -42,6 +43,10 @@ class Spotify {
 
   secret() {
     return print.secret(this.clientSecret);
+  }
+
+  _log(message) {
+    console.log(`${chalk.green('Spotify:')} ${message}`);
   }
 }
 

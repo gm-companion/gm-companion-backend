@@ -35,6 +35,24 @@ router.get('/status', (req, res) => {
 });
 
 /**
+ * Redirect to the invite link
+ */
+router.get('/invite', (req, res) => {
+  const clientId = process.env.DISCORD_BOT_CLIENT_ID;
+
+  if (clientId) {
+    res.redirect(`https://discord.com/oauth2/authorize?client_id=${clientId}&scope=bot&permissions=36756480`);
+  } else {
+    res.render('error', {
+      message: 'Invite not possible.',
+      error: {
+        status: 'Discord client id is not set. Please contact the server owner.'
+      }
+    });
+  }
+});
+
+/**
  * Resume audio playback in channel
  */
 router.post('/:channelId/play', (req, res) => {

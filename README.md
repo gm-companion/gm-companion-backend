@@ -9,6 +9,11 @@ It also serves as a Discord bot.
 
 ### Install dependencies
 
+Make sure you have the following dependencies installed:
+
+* ffmpeg
+* libopus
+
 ```
 npm install
 ```
@@ -21,6 +26,7 @@ SERVER_URL="enter the server url here (without trailing /)"
 SPOTIFY_CLIENT_ID=""
 SPOTIFY_CLIENT_SECRET=""
 
+DISCORD_BOT_CLIENT_ID=""
 DISCORD_BOT_TOKEN=""
 ```
 

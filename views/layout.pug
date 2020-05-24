@@ -1,4 +1,23 @@
 doctype html
+
+mixin field(name, value, color)
+  if (color)
+    p(style=`color: ${color};`) <b>#{name}</b>: <code>#{value}</code>
+  else
+    p <b>#{name}</b>: <code>#{value}</code>
+
+mixin status(name, property)
+  if (property)
+    +field(name, property)
+  else
+    +field(name, "NOT SET", "red")
+
+mixin warn(name, property, check)
+  if (check)
+    +field(name, property)
+  else
+    +field(name, property, "orange")
+
 html
   head
     title= title

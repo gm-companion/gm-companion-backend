@@ -1,6 +1,6 @@
 {
   "name": "gm-companion-backend",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A server backend for the gm-companion.",
   "author": "Phil Hoffmann",
   "license": "GPL-3.0-or-later",
@@ -10,9 +10,11 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@discordjs/node-pre-gyp": "^0.1.0",
     "@discordjs/opus": "^0.3.2",
     "@rophil/audio-mixer": "~1.0.0",
     "bufferutil": "^4.0.1",
+    "chalk": "^4.0.0",
     "cookie-parser": "~1.4.4",
     "discord.js": "^12.2.0",
     "dotenv": "^8.2.0",
