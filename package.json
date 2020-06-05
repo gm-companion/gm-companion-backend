@@ -30,13 +30,13 @@
     "pretty-error": "^2.1.1",
     "prism-media": "^1.2.2",
     "pug": "^2.0.4",
-    "rpg-dice-roller": "^4.1.0",
+    "rpg-dice-roller": "^4.1.1",
     "sodium": "^3.0.2",
     "spotify-web-api-node": "^4.0.0",
     "tiny-json-http": "^7.2.0",
     "utf-8-validate": "^5.0.2",
-    "ytdl-core": "^2.1.4",
-    "ytsr": "^0.1.14",
+    "ytdl-core": "^2.1.6",
+    "ytsr": "^0.1.15",
     "zlib-sync": "^0.1.6"
   },
   "devDependencies": {
