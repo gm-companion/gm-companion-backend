@@ -14,14 +14,14 @@
     "@discordjs/opus": "^0.3.2",
     "@rophil/audio-mixer": "~1.0.0",
     "bufferutil": "^4.0.1",
-    "chalk": "^4.0.0",
+    "chalk": "^4.1.0",
     "cookie-parser": "~1.4.4",
     "discord.js": "^12.2.0",
     "dotenv": "^8.2.0",
     "erlpack": "^0.1.3",
     "express": "~4.17.1",
     "express-fileupload": "^1.1.7-alpha.3",
-    "follow-redirects": "^1.11.0",
+    "follow-redirects": "^1.12.1",
     "gather-stream": "^1.0.0",
     "http-errors": "~1.7.3",
     "morgan": "~1.10.0",
@@ -35,15 +35,15 @@
     "spotify-web-api-node": "^4.0.0",
     "tiny-json-http": "^7.2.0",
     "utf-8-validate": "^5.0.2",
-    "ytdl-core": "^2.1.6",
+    "ytdl-core": "^2.1.7",
     "ytsr": "^0.1.15",
-    "zlib-sync": "^0.1.6"
+    "zlib-sync": "^0.1.7"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
     "eslint": "^6.8.0",
-    "eslint-config-airbnb-base": "^14.1.0",
-    "eslint-plugin-import": "^2.20.2"
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0"
   },
   "repository": {
     "type": "git",
