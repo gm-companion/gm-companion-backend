@@ -37,7 +37,7 @@ router.get('/callback', (req, res) => {
  * Authorize
  */
 router.get('/login', (req, res) => {
-  lastRedirectUri = req.query.spotify.redirectUri;
+  lastRedirectUri = req.query.redirect_uri;
 
   if (!lastRedirectUri) {
     console.log('No redirect uri was given');
@@ -127,7 +127,6 @@ router.get('/refresh', async (req, res) => {
       }
     });
 
-
     res.json(reply.body);
   } catch (err) {
     // If refresh is invalid
@@ -146,6 +145,5 @@ router.get('/refresh', async (req, res) => {
     }
   }
 });
-
 
 module.exports = router;

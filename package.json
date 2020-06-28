@@ -30,7 +30,7 @@
     "pretty-error": "^2.1.1",
     "prism-media": "^1.2.2",
     "pug": "^2.0.4",
-    "rpg-dice-roller": "^4.1.1",
+    "rpg-dice-roller": "^4.1.2",
     "sodium": "^3.0.2",
     "spotify-web-api-node": "^4.0.0",
     "tiny-json-http": "^7.2.0",
