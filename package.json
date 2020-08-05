@@ -20,7 +20,7 @@
     "dotenv": "^8.2.0",
     "erlpack": "^0.1.3",
     "express": "~4.17.1",
-    "express-fileupload": "^1.1.7-alpha.3",
+    "express-fileupload": "^1.1.9",
     "follow-redirects": "^1.12.1",
     "gather-stream": "^1.0.0",
     "http-errors": "~1.7.3",
