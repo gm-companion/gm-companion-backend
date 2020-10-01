@@ -1,12 +1,10 @@
 const discord = require('discord.js');
-const rpgDiceRoller = require('rpg-dice-roller/lib/umd/bundle.min.js');
 const pe = require('pretty-error').start();
 const chalk = require('chalk');
+const diceRoller = require('rpg-dice-roller');
 const embeds = require('./embeds');
 const AudioPlayer = require('./audioplayer');
 const print = require('../util/print');
-
-const diceRoller = new rpgDiceRoller.DiceRoller();
 
 const CLIENT_ID = process.env.DISCORD_BOT_CLIENT_ID;
 const BOT_TOKEN = process.env.DISCORD_BOT_TOKEN;
@@ -219,6 +217,5 @@ class DiscordBot {
     }
   }
 }
-
 
 module.exports = DiscordBot;
