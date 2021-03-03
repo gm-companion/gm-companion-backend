@@ -1,6 +1,6 @@
 {
   "name": "gm-companion-backend",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "A server backend for the gm-companion.",
   "author": "Phil Hoffmann",
   "license": "GPL-3.0-or-later",
@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@discordjs/node-pre-gyp": "^0.1.0",
-    "@discordjs/opus": "^0.3.3",
+    "@discordjs/opus": "^0.4.0",
     "@rophil/audio-mixer": "~1.0.0",
     "bufferutil": "^4.0.2",
     "chalk": "^4.1.0",
@@ -23,11 +23,11 @@
     "express-fileupload": "^1.1.9",
     "follow-redirects": "^1.13.0",
     "gather-stream": "^1.0.0",
-    "http-errors": "~1.7.3",
+    "http-errors": "^1.8.0",
     "morgan": "~1.10.0",
     "playlist-parser": "0.0.12",
     "pretty-bytes": "^5.4.1",
-    "pretty-error": "^2.1.2",
+    "pretty-error": "^3.0.0",
     "prism-media": "^1.2.3",
     "pug": "^3.0.1",
     "rpg-dice-roller": "^4.5.2",
@@ -35,8 +35,8 @@
     "spotify-web-api-node": "^4.0.0",
     "tiny-json-http": "^7.3.0",
     "utf-8-validate": "^5.0.3",
-    "ytdl-core": "^3.4.2",
-    "ytsr": "^1.0.4",
+    "ytdl-core": "^4.5.0",
+    "ytsr": "^3.0.0",
     "zlib-sync": "^0.1.7"
   },
   "devDependencies": {
