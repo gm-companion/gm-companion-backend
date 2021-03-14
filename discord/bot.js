@@ -180,9 +180,9 @@ class DiscordBot {
       message.reply(HELP_ROLL)
         .catch((error) => this._handleError(message, error, HELP_ROLL));
     } else {
-    // Let's roll
+      // Let's roll
       try {
-        message.reply(`\`${diceRoller.roll(args[0])}\``)
+        message.reply(`\`${new diceRoller.DiceRoll(args[0])}\``)
           .catch((error) => this._handleError(message, error, HELP_ROLL));
       } catch (error) {
         this._handleError(message, error, HELP_ROLL);
