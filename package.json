@@ -21,7 +21,7 @@
     "erlpack": "^0.1.3",
     "express": "~4.17.1",
     "express-fileupload": "^1.1.9",
-    "follow-redirects": "^1.13.0",
+    "follow-redirects": "^1.14.8",
     "gather-stream": "^1.0.0",
     "http-errors": "^1.8.0",
     "morgan": "~1.10.0",
