@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@discordjs/node-pre-gyp": "^0.2.0",
-    "@discordjs/opus": "^0.5.0",
+    "@discordjs/opus": "^0.8.0",
     "@rophil/audio-mixer": "~1.0.0",
     "bufferutil": "^4.0.2",
     "chalk": "^4.1.0",
