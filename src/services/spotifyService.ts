@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: 	AGPL-3.0-or-later
 
 import superagent from "superagent";
+import { ValidateError } from "tsoa";
 
 export interface AccessTokenResponse {
   access_token: string;
@@ -47,6 +48,13 @@ export class Service {
   async requestRefreshedAccessToken(
     refresh_token: string
   ): Promise<AccessTokenResponse> {
+    if (refresh_token.length < 1) {
+      throw new ValidateError(
+        { refresh_token: { message: "refresh_token must not be empty" } },
+        "Token is empty"
+      );
+    }
+
     const res = await superagent
       .post("https://accounts.spotify.com/api/token")
       .type("application/x-www-form-urlencoded")

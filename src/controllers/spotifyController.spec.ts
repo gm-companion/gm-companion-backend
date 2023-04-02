@@ -54,4 +54,9 @@ describe("Test SpotifyController", () => {
     const res = await request(app).get("/spotify/refresh");
     expect(res.status).toBe(StatusCodes.UNPROCESSABLE_ENTITY);
   });
+
+  test("Token refresh fails with empty refresh token", async () => {
+    const res = await request(app).get("/spotify/refresh?refresh_token=");
+    expect(res.status).toBe(StatusCodes.UNPROCESSABLE_ENTITY);
+  });
 });
