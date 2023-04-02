@@ -8,7 +8,7 @@ The server enables gm-companion users to authenticate with Spotify without havin
 
 ### Install dependencies
 
-```
+```sh
 npm install
 ```
 
@@ -17,10 +17,25 @@ npm install
 ```ini
 SPOTIFY_CLIENT_ID=""
 SPOTIFY_CLIENT_SECRET=""
+
+# optional sentry config
+SENTRY_DSN=""
+SENTRY_ENV=""
 ```
 
 ### Start application
 
-```
+```sh
+npm run build
 npm start
+```
+
+### Development
+
+```sh
+# run without transpiling, autodetects changes
+npm run dev
+
+# run tests
+npm run test
 ```

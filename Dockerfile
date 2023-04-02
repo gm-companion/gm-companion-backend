@@ -5,6 +5,7 @@ RUN npm ci
 RUN npm run build
 
 FROM node:lts-alpine as runner
+ENV NODE_ENV=production
 WORKDIR /app
 
 COPY package*.json .

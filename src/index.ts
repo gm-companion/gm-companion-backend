@@ -1,6 +1,5 @@
-// Copyright 2022 Phil Hoffmann.
+// Copyright 2023 Phil Hoffmann.
 // SPDX-License-Identifier: 	AGPL-3.0-or-later
-
 import app from "./app";
 import dotenv from "dotenv";
 dotenv.config();
