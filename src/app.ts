@@ -30,6 +30,8 @@ Sentry.init({
     new Sentry.Integrations.Express({ app }),
     ...Sentry.autoDiscoverNodePerformanceMonitoringIntegrations(),
   ],
+  ignoreTransactions: ["GET /"],
+  denyUrls: [/wp-\w+/i, /.+.php/i, /favicon/i],
   tracesSampleRate: 1.0,
   enabled: enableSentry,
 });
