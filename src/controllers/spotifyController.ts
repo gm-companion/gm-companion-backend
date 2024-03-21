@@ -3,7 +3,10 @@
 
 import { Controller, Get, Query, Route, SuccessResponse, Request } from "tsoa";
 import express from "express";
-import { Service, AccessTokenResponse } from "../services/spotifyService";
+import {
+  SpotifyService,
+  AccessTokenResponse,
+} from "../services/spotifyService.js";
 import querystring from "querystring";
 
 @Route("/spotify")
@@ -16,21 +19,21 @@ export class SpotifyController extends Controller {
   @SuccessResponse(302, "Redirect")
   public login(
     @Request() request: express.Request,
-    @Query() redirect_uri: string
+    @Query() redirect_uri: string,
   ): void {
     const state = "state";
-    const scope = Service.getScope();
+    const scope = SpotifyService.getScope();
 
     const response = request.res as express.Response;
     response.redirect(
       "https://accounts.spotify.com/authorize?" +
         querystring.stringify({
           response_type: "code",
-          client_id: Service.getClientId(),
+          client_id: SpotifyService.getClientId(),
           scope: scope,
           redirect_uri: redirect_uri,
           state: state,
-        })
+        }),
     );
   }
 
@@ -44,9 +47,9 @@ export class SpotifyController extends Controller {
   public token(
     @Request() _: express.Request,
     @Query() code: string,
-    @Query() redirect_uri: string
+    @Query() redirect_uri: string,
   ): Promise<AccessTokenResponse> {
-    return new Service().requestAccessToken(code, redirect_uri);
+    return new SpotifyService().requestAccessToken(code, redirect_uri);
   }
 
   /**
@@ -55,6 +58,6 @@ export class SpotifyController extends Controller {
    */
   @Get("/refresh")
   public refresh(@Query() refresh_token: string): Promise<AccessTokenResponse> {
-    return new Service().requestRefreshedAccessToken(refresh_token);
+    return new SpotifyService().requestRefreshedAccessToken(refresh_token);
   }
 }

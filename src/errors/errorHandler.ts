@@ -18,7 +18,7 @@ export function errorHandler(
   err: unknown,
   req: ExRequest,
   res: ExResponse,
-  next: NextFunction
+  next: NextFunction,
 ): void {
   if (res.headersSent) {
     return next(err);

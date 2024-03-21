@@ -1,6 +1,6 @@
 {
   "watch": ["src/**/*.ts", ".env"],
   "ext": "ts,js,.env",
-  "exec": "ts-node src/index.ts",
+  "exec": "tsx src/index.ts",
   "ignore": ["*.spec.ts", "src/routes.ts"]
 }

@@ -12,7 +12,7 @@ export interface AccessTokenResponse {
   refresh_token?: string;
 }
 
-export class Service {
+export class SpotifyService {
   static getClientSecret(): string {
     return process.env.SPOTIFY_CLIENT_SECRET ?? "";
   }
@@ -27,7 +27,7 @@ export class Service {
 
   async requestAccessToken(
     code: string,
-    redirect_uri: string
+    redirect_uri: string,
   ): Promise<AccessTokenResponse> {
     const res = await superagent
       .post("https://accounts.spotify.com/api/token")
@@ -35,8 +35,8 @@ export class Service {
       .set(
         "Authorization",
         `Basic ${Buffer.from(
-          Service.getClientId() + ":" + Service.getClientSecret()
-        ).toString("base64")}`
+          SpotifyService.getClientId() + ":" + SpotifyService.getClientSecret(),
+        ).toString("base64")}`,
       )
       .send("grant_type=authorization_code")
       .send(`code=${code}`)
@@ -46,14 +46,16 @@ export class Service {
   }
 
   async requestRefreshedAccessToken(
-    refresh_token: string
+    refresh_token: string,
   ): Promise<AccessTokenResponse> {
     if (refresh_token.length < 1) {
       throw new ValidateError(
         { refresh_token: { message: "refresh_token must not be empty" } },
-        "Token is empty"
+        "Token is empty",
       );
     }
+
+    console.log("sending refresh request ...");
 
     const res = await superagent
       .post("https://accounts.spotify.com/api/token")
@@ -61,11 +63,13 @@ export class Service {
       .set(
         "Authorization",
         `Basic ${Buffer.from(
-          Service.getClientId() + ":" + Service.getClientSecret()
-        ).toString("base64")}`
+          SpotifyService.getClientId() + ":" + SpotifyService.getClientSecret(),
+        ).toString("base64")}`,
       )
       .send("grant_type=refresh_token")
       .send(`refresh_token=${refresh_token}`);
+
+    console.log("received reply, returning to client ...");
 
     return res.body as AccessTokenResponse;
   }

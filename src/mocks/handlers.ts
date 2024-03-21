@@ -1,8 +1,8 @@
 // Copyright 2022 Phil Hoffmann.
 // SPDX-License-Identifier: 	AGPL-3.0-or-later
 
-import { rest } from "msw";
-import { AccessTokenResponse } from "../services/spotifyService";
+import { http, HttpResponse } from "msw";
+import { AccessTokenResponse } from "../services/spotifyService.js";
 
 function buildAccessTokenResponse(): AccessTokenResponse {
   return {
@@ -24,21 +24,20 @@ function buildRefreshedAccessTokenResponse(): AccessTokenResponse {
 }
 
 export const handlers = [
-  rest.post("https://accounts.spotify.com/api/token", async (req, res, ctx) => {
-    const body = new URLSearchParams(await req.text());
+  http.post("https://accounts.spotify.com/api/token", async ({ request }) => {
+    const body = new URLSearchParams(await request.text());
     const grant_type = body.get("grant_type");
 
     if (grant_type == "authorization_code") {
-      return res(ctx.status(200), ctx.json(buildAccessTokenResponse()));
+      return HttpResponse.json(buildAccessTokenResponse(), { status: 200 });
     }
 
     if (grant_type == "refresh_token") {
-      return res(
-        ctx.status(200),
-        ctx.json(buildRefreshedAccessTokenResponse())
-      );
+      return HttpResponse.json(buildRefreshedAccessTokenResponse(), {
+        status: 200,
+      });
     }
 
-    return res(ctx.status(400));
+    return new HttpResponse(null, { status: 400 });
   }),
 ];
