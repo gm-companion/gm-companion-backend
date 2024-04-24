@@ -1,6 +1,6 @@
 {
   "name": "gm-companion-backend",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "A server backend for the gm-companion.",
   "author": "Phil Hoffmann",
   "license": "AGPL-3.0-or-later",
@@ -29,7 +29,7 @@
     "http-status-codes": "^2.3.0",
     "morgan": "^1.10.0",
     "rimraf": "^5.0.5",
-    "superagent": "^8.1.2",
+    "superagent": "^9.0.1",
     "tsoa": "^6.1.5"
   },
   "devDependencies": {
@@ -47,7 +47,7 @@
     "nodemon": "^3.1.0",
     "npm-run-all": "^4.1.5",
     "prettier": "^3.2.5",
-    "supertest": "^6.3.4",
+    "supertest": "^7.0.0",
     "ts-jest": "^29.1.2",
     "ts-node": "^10.9.2",
     "tsx": "^4.7.1",
