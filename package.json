@@ -25,7 +25,7 @@
     "@sentry/node": "^7.107.0",
     "@types/morgan": "^1.9.9",
     "dotenv": "^16.4.5",
-    "express": "^4.19.2",
+    "express": "^4.21.0",
     "http-status-codes": "^2.3.0",
     "morgan": "^1.10.0",
     "rimraf": "^5.0.5",
