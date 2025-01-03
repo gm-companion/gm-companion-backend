@@ -1,7 +1,14 @@
 // Copyright 2022 Phil Hoffmann.
 // SPDX-License-Identifier: 	AGPL-3.0-or-later
 
-import { Controller, Get, Query, Route, SuccessResponse, Request } from "tsoa";
+import {
+  Controller,
+  Get,
+  Query,
+  Route,
+  SuccessResponse,
+  Request,
+} from "@tsoa/runtime";
 import express from "express";
 import {
   SpotifyService,

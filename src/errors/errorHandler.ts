@@ -6,7 +6,7 @@ import {
   Request as ExRequest,
   NextFunction,
 } from "express";
-import { ValidateError } from "tsoa";
+import { ValidateError } from "@tsoa/runtime";
 
 export function notFoundHandler(_req: ExRequest, res: ExResponse) {
   res.status(404).send({

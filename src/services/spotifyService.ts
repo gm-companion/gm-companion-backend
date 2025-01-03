@@ -2,7 +2,7 @@
 // SPDX-License-Identifier: 	AGPL-3.0-or-later
 
 import superagent from "superagent";
-import { ValidateError } from "tsoa";
+import { ValidateError } from "@tsoa/runtime";
 
 export interface AccessTokenResponse {
   access_token: string;
